@@ -17,24 +17,24 @@ type element struct {
   next  *element
 }
 
-// Return the stack's length
-func (s *stack) Len() int {
+// Len returns the stack's size.
+func (s *Stack) Len() int {
   s.mutex.Lock()
   defer s.mutex.Unlock()
   return s.size
 }
 
-// Push a new element onto the stack
-func (s *stack) Push(value interface{}) {
+// Push puts a new value on top of the stack.
+func (s *Stack) Push(value interface{}) {
   s.mutex.Lock()
   defer s.mutex.Unlock()
   s.top = &element{value, s.top}
   s.size++
 }
 
-// Remove the top element from the stack and return it's value
-// If the stack is empty, return nil
-func (s *stack) Pop() (value interface{}) {
+// Pop removes the top element from the stack and returns its value.
+// If the stack is empty, return nil.
+func (s *Stack) Pop() (value interface{}) {
   s.mutex.Lock()
   defer s.mutex.Unlock()
   if s.size > 0 {
@@ -45,8 +45,13 @@ func (s *stack) Pop() (value interface{}) {
   return nil
 }
 
+// Peek returns the top value without removing it.
+func (s *Stack) Peek() (value interface{}) {
+  return s.top.value
+}
+
 // NewStack returns a pointer to a new initialized stack
-func NewStack() *stack {
+func NewStack() *Stack {
   return &stack{
     top:   nil,
     size:  0,
