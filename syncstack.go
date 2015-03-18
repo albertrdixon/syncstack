@@ -46,7 +46,7 @@ func (s *Stack) Pop() (value interface{}) {
 }
 
 // Peek returns the top value without removing it.
-func (s *Stack) Peek() (value interface{}) {
+func (s *Stack) Peek() interface{} {
   return s.top.value
 }
 
