@@ -4,7 +4,9 @@ import (
   "sync"
 )
 
-type stack struct {
+// Stack is the main type. Holds a pointer to the top element,
+// the size of the stack and the mutex.
+type Stack struct {
   top   *element
   size  int
   mutex *sync.Mutex
